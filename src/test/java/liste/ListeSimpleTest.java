@@ -255,4 +255,85 @@ public class ListeSimpleTest {
         System.out.println(listeATester);
         assertEquals(listeATester.toString(), "ListeSimple(Noeud(4), Noeud(2), Noeud(3), Noeud(1), Noeud(5))");
     }
+   @Test public void echangerMemeNoeud_NoOp() {
+        // Liste : 1,2,3,4,5
+        listeATester.ajout(5);
+        listeATester.ajout(4);
+        listeATester.ajout(3);
+        listeATester.ajout(2);
+        listeATester.ajout(1);
+        String avant = listeATester.toString();
+
+        // r = noeud "3"
+        Noeud r = listeATester.tete.getSuivant().getSuivant();
+        listeATester.echanger(r, r);
+
+        assertEquals(avant, listeATester.toString(), "Échanger le même noeud ne doit rien changer");
+        assertEquals(5, listeATester.getSize());
+    }
+
+    @Test
+    public void getPrecedentMilieu() {
+        // Liste : 1,2,3,4
+        listeATester.ajout(4);
+        listeATester.ajout(3);
+        listeATester.ajout(2);
+        listeATester.ajout(1);
+        // r = noeud "3"
+        Noeud r = listeATester.tete.getSuivant().getSuivant();
+        Noeud precedent = listeATester.getPrecedent(r);
+        assertNotNull(precedent);
+        assertEquals(2, precedent.getElement());
+    }
+
+    @Test
+    public void supprimePremier_ElementAbsent_NeChangeRien() {
+        // Liste : 1,2,3
+        listeATester.ajout(3);
+        listeATester.ajout(2);
+        listeATester.ajout(1);
+        String avant = listeATester.toString();
+        long sizeAvant = listeATester.getSize();
+
+        listeATester.supprimePremier(99);
+
+        assertEquals(avant, listeATester.toString());
+        assertEquals(sizeAvant, listeATester.getSize());
+    }
+
+    @Test
+    public void modifiePremier_ElementAbsent_NeChangeRien() {
+        // Liste : 1,2,3
+        listeATester.ajout(3);
+        listeATester.ajout(2);
+        listeATester.ajout(1);
+        String avant = listeATester.toString();
+
+        listeATester.modifiePremier(99, 0);
+
+        assertEquals(avant, listeATester.toString());
+    }
+
+    @Test
+    public void supprimeTous_AucunMatch_NeChangeRien() {
+        // Liste : 1,2,1
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.ajout(1);
+        String avant = listeATester.toString();
+        long sizeAvant = listeATester.getSize();
+
+        listeATester.supprimeTous(99);
+
+        assertEquals(avant, listeATester.toString());
+        assertEquals(sizeAvant, listeATester.getSize());
+    }
+
+    @Test
+    public void inverser_UnSeulElement() {
+        listeATester.ajout(42);
+        listeATester.inverser();
+        assertEquals("ListeSimple(Noeud(42))", listeATester.toString());
+    }
+
 }
