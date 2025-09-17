@@ -2,7 +2,7 @@ name: "Java CI with Maven - Test and package" # Nom du workflow
 on: [pull_request] # Déclencheur du workflow : à chaque pull request
 jobs:
   Salutations: # Nom du job : Salutations
-   name: Salutations
+   name: "Build and Test with Maven"
    runs-on: ubuntu-latest # OS où s'exécute le job
    steps:
     - name: "Checkout repository"
