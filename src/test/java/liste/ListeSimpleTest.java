@@ -45,6 +45,7 @@ class ListeSimpleTest {
 
     @Test
     void toStringDonneTousLesNoeuds() {
+        assertEquals("ListeSimple()", listeATester.toString());
         System.out.println(listeATester);
         listeATester.ajout(1);
         listeATester.ajout(2);
@@ -58,7 +59,7 @@ class ListeSimpleTest {
         listeATester.ajout(2);
         listeATester.ajout(3);
         listeATester.modifiePremier(2, 4);
-        assertEquals(listeATester.toString(), "ListeSimple(Noeud(3), Noeud(4), Noeud(1))");
+        assertEquals("ListeSimple(Noeud(3), Noeud(4), Noeud(1))", listeATester.toString());
         assertEquals(4, listeATester.tete.getSuivant().getElement());
     }
 
@@ -69,7 +70,7 @@ class ListeSimpleTest {
         listeATester.ajout(1);
         listeATester.ajout(1);
         listeATester.modifieTous(1, 4);
-        assertEquals(listeATester.toString(), "ListeSimple(Noeud(4), Noeud(4), Noeud(2), Noeud(4))");
+        assertEquals("ListeSimple(Noeud(4), Noeud(4), Noeud(2), Noeud(4))", listeATester.toString());
         assertEquals(4, listeATester.tete.getSuivant().getElement());
     }
 
