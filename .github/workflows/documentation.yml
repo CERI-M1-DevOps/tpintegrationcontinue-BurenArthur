@@ -20,7 +20,7 @@ jobs:
           cache: maven
 
       - name: Build Javadoc
-        run: mvn -B -DskipTests javadoc:javadoc
+        run: mvn -B javadoc::javadoc
 
       - name: Debug Javadoc output
         run: |
