@@ -1,26 +1,32 @@
 name: Documentation Deployment
+
 on:
-  pull_request:
-    types: [closed]
-    branches: [ main ] 
+  push:
+    branches: [ main ]
+
 permissions:
   contents: write
+
 jobs:
   deploy-docs:
-    if: ${{ github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          ref: ${{ github.event.pull_request.merge_commit_sha }}
+
       - uses: actions/setup-java@v4
         with:
           distribution: corretto
           java-version: '21'
           cache: maven
+
       - name: Build Javadoc
-        run: mvn -B javadoc:javadoc
+        run: mvn -B -DskipTests javadoc:javadoc
+
+      - name: Debug Javadoc output
+        run: |
+          echo "==== Listing target/site ===="
+          ls -R target/site || true
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
