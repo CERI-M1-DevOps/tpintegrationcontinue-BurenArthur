@@ -1,5 +1,5 @@
 package liste;
-
+// test du cache maven
 public class ListeSimple {
     private long size;
     Noeud tete;
