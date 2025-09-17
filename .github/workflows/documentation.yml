@@ -2,7 +2,7 @@ name: Documentation Deployment
 on:
   pull_request:
     types: [closed]
-    branches: [ main ]   # PR vers main
+    branches: [ main ] 
 permissions:
   contents: write
 jobs:
