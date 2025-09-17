@@ -1,0 +1,19 @@
+name: "Java CI with Maven - Test and package" # Nom du workflow
+on: [pull_request] # Déclencheur du workflow : à chaque pull request
+jobs:
+  Salutations: # Nom du job : Salutations
+   name: Salutations
+   runs-on: ubuntu-latest # OS où s'exécute le job
+   steps:
+    - name: "Checkout repository"
+      uses: actions/checkout@v4
+      #se placer dans le dépôt courant
+      with:
+        fetch-depth: 0
+    - name: "Set up JDK 21"
+      uses: actions/setup-java@v4
+      with:
+            distribution: 'corretto' # Choix de la distribution Java
+            java-version: '21' # Version de Java
+    - name: "Build with Maven"
+      run: mvn -B package --file pom.xml
