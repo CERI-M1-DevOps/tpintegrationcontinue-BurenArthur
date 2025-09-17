@@ -3,7 +3,8 @@ on:
   pull_request:
     types: [closed]
     branches: [ main ]   # PR vers main
-
+permissions:
+  contents: write
 jobs:
   deploy-docs:
     if: ${{ github.event.pull_request.merged == true }}
