@@ -1,31 +1,26 @@
-name: "Documentation Deployment"
-
+name: Documentation Deployment
 on:
-  push:
-    branches:
-      - main   # déclenche seulement quand un push arrive sur main (= PR fusionnée)
+  pull_request:
+    types: [closed]
+    branches: [ main ]   # PR vers main
 
 jobs:
   deploy-docs:
-    name: "Deploy Documentation"
+    if: ${{ github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
     steps:
-      - name: "Checkout repository"
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: "Set up JDK 21"
-        uses: actions/setup-java@v4
+          ref: ${{ github.event.pull_request.merge_commit_sha }}
+      - uses: actions/setup-java@v4
         with:
-          distribution: 'corretto'
+          distribution: corretto
           java-version: '21'
-          cache: 'maven'
-
-      - name: "Build Documentation with Maven"
-        run: mvn -B javadoc:javadoc   # pas de double "::"
-
-      - name: "Deploy to GitHub Pages"
+          cache: maven
+      - name: Build Javadoc
+        run: mvn -B javadoc:javadoc
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
