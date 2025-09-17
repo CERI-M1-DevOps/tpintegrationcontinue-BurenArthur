@@ -16,7 +16,7 @@ public class ListeSimple {
     * Modifie la première occurrence de element par nouvelleValeur
     * @param element l'élément à modifier
     * @param nouvelleValeur la nouvelle valeur à affecter
-    * @return void
+    * 
     */
     public void modifiePremier(Object element, Object nouvelleValeur) {
         Noeud courant = tete;
@@ -30,7 +30,7 @@ public class ListeSimple {
      * Modifie toutes les occurrences de element par nouvelleValeur
      * @param element l'élément à modifier
      * @param nouvelleValeur la nouvelle valeur à affecter
-     * @return void
+     * 
      */
     public void modifieTous(Object element, Object nouvelleValeur) {
         Noeud courant = tete;
@@ -61,7 +61,7 @@ public class ListeSimple {
     /**
      * Supprime la première occurrence de element
      * @param element l'élément à supprimer
-     * @return void
+     * 
      */
     public void supprimePremier(Object element) {
         if (tete != null) {
@@ -86,7 +86,7 @@ public class ListeSimple {
     /**
      * Supprime toutes les occurrences de element
      * @param element l'élément à supprimer
-     * @return void
+     * 
      */
     public void supprimeTous(int element) {
        tete = supprimeTousRecurs(element, tete);
@@ -152,7 +152,6 @@ public class ListeSimple {
      * Echange les noeuds r1 et r2 dans la liste
      * @param r1 le premier noeud à échanger
      * @param r2 le second noeud à échanger
-     * @return void
      */
     public void echanger(Noeud r1, Noeud r2) {
         if (r1 == r2)
