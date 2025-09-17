@@ -16,4 +16,4 @@ jobs:
             distribution: 'corretto' # Choix de la distribution Java
             java-version: '21' # Version de Java
     - name: "Build with Maven"
-      run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar-Dsonar.projectKey=$(echo ${{ github.repository }} | sed 's-/-_-')
+      run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar-Dsonar.projectKey="$(echo CERI-M1-DevOps/TPIntegrationContinue | sed 's-/-_-')"-Dsonar.host.url="https://sonarcloud.io" \-Dsonar.organization="TON_ORG_SONARCLOUD" \-Dsonar.token="$SONAR_TOKEN"
